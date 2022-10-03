@@ -1,0 +1,20 @@
+Javascript is a high level, interpreted programming language
+- by intepreted, it means that you execute without having to run it in a compiler. 
+- is a multi-paradigm: you can write object oriented code, functionial. 
+- Runs on the client as well as on the server. 
+- s
+Why learn javascript?
+- It is the programming language of the browser
+- Build interactive user interfaces with frameworks like React
+- Used in building very fast server side and fullstack applications
+-Used in mobile development.
+Used in desktop application development. 
+- 
+
+JAVASCRIPT VARIABLES
+- Three ways to declare variables: var,let, const
+- var is globally scoped
+- let and const have block scope
+
+
+- check traversy's js courses on youtube. 
