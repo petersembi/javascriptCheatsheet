@@ -239,5 +239,187 @@ switch (fruit) {
 
 // FUNCTIONS
 function addNums (num1, num2){
-    
+   console.log(num1 + num2); 
+}
+
+addNums(5,3);
+
+// You can pass default values
+function mulNums(num1 = 1, num2 = 1) {
+    console.log(num1 * num2);
+}
+
+mulNums();
+
+// arrow functions
+// -- Instead of using the keyword function we name the function as a variable. 
+
+const  divNums = (num1 = 1, num2 =1) => {
+    return num1 / num2;
+}
+
+console.log(divNums(5,5));
+
+// -- if you want to return something you dont neet to use the return keyword i.e if you dont want to use curly braces. 
+
+// if you  there is only one line of code inside the function, you dont need to use curly braces 
+const remNums =(num1, num2) => num1 % num2;
+
+console.log(remNums(5,2));
+
+// if you are using only one parameter, you dont need parenthesis;
+console.log(addNums(5));
+
+const addNum = num1 => num1 + 5;
+
+// using arrow functions with for each
+todos.forEach((todo)=> console.log(todo));
+
+// ============OBJECT ORIENTED PROGRAMMING===========
+//Constructor function
+function Person (firstName, lastName, dob) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dob = new Date(dob);//Here we are using date object, which takes a string parameter, hence converting as string to a date object.     
+    // this.getBirthYear = function (){
+    //     return this.dob.getFullYear();    
+    // }
+    // this.getFullName = function() {
+    //     return `${this.firstName} ${this.lastName}`;
+    // }
+}
+
+
+// using prototypes to add methods to your constructor function
+Person.prototype.getBirthYear = function () { 
+    return this.dob.getFullYear();    
+
+ }
+
+ Person.prototype.getFullName = function(){
+    return `${this.firstName} ${this.lastName}`;
+
+ }
+// Instantiate object
+const person1 = new Person('John', 'Doe', '4-3-1980');
+const person2 = new Person('Mary', 'Smith', '3-6-1970');
+
+console.log(person2.firstName);
+console.log(person2.dob.getDay());
+
+console.log(person1.getBirthYear());
+
+console.log(person1.getFullName());
+
+// es6
+// Use of classes (recommended way)
+
+class Persona {
+    constructor(firstNamw, lastName, dob) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = new Date(dob);//Here we are using date object, which takes a string parameter, hence converting as string to a date object.     
+    }
+    getBirthYear () {
+        return this.dob.getFullYear();    
+    }
+
+   
+}
+
+
+
+
+// MANIPULATING THE DOM
+// Single element
+    const form = document.getElementById('my-form');
+    console.log(document.querySelector('.container'));
+    console.log(document.querySelector('h1')); //will select only the fist h1 since its a single element selector. 
+
+// Multiple element
+    console.log(document.querySelectorAll('.item'));//this is the preferred one
+    // console.log(document.getElementByClassName('item'));
+
+// console.log(document.getElementByTagName('li'));
+
+const items = document.querySelectorAll('.item');
+items.forEach((item) => console.log(item));
+
+// manipulating the dom
+const ul = document.querySelector('.items');
+
+// ul.remove();// remove all
+//ul.lastElementChild.remove(); //remove the first element of of ul
+ul.firstElementChild.remove();
+
+// changing the text
+ul.firstElementChild.textContent = 'Hello';
+ul.children[1].innerText = 'Peter';
+ul.lastElementChild.innerHTML = '<h5>Hello</h5>'; //to add html dynamically you add it with innerhtml
+
+// // changing styling
+// const btn = document.querySelector('.btn');
+// btn.style.background = 'red';
+
+// // Events
+// // btn.addEventListener('click', (e) => {
+// //     e.preventDefault(); //to avoid flushing
+// //     console.log('click');
+// //     console.log(e.target);
+// //     console.log(e.target.className);
+// //     document.querySelector('#my-form').style.background = '#ccc';
+// //     document.querySelector('body').classList.add('bg-dark');
+// //     document.querySelector('.items').lastElementChild.innerHTML = '<h1>Hello</h1>';
+
+// // });
+
+// btn.addEventListener('mouseover', (e) => {
+//     e.preventDefault(); //to avoid flushing
+//     console.log('click');
+//     console.log(e.target);
+//     console.log(e.target.className);
+//     document.querySelector('#my-form').style.background = '#ccc';
+//     document.querySelector('body').classList.add('bg-dark');
+//     document.querySelector('.items').lastElementChild.innerHTML = '<h1>Hello</h1>';
+
+// });
+
+// btn.addEventListener('mouseout', (e) => {
+//     e.preventDefault(); //to avoid flushing
+//     console.log('click');
+//     console.log(e.target);
+//     console.log(e.target.className);
+//     document.querySelector('#my-form').style.background = '#ccc';
+//     document.querySelector('body').classList.add('bg-dark');
+//     document.querySelector('.items').lastElementChild.innerHTML = '<h1>Hello</h1>';
+
+// });
+
+// form app
+const MyForm = document.querySelector('#my-form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const msg = document.querySelector('.msg');
+const userList = document.querySelector('#users');
+
+MyForm.addEventListener('submit', onSubmit);
+function onSubmit(e) {
+e.preventDefault();
+
+    if (nameInput.value === '' || emailInput.value === '') {
+        msg.classList.add('error');
+        msg.innerHTML = 'Please enter all fields';
+        // set time out functions takes two parameters, the first one is the function to be executed, the second one is the time in milliseconds
+        setTimeout(()=> msg.remove(), 3000);
+    } else {
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+        
+        userList.appendChild(li);
+
+        // clear the fields.
+        nameInput.value = '';
+        emailInput.value='';
+    }
+
 }
